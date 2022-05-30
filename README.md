@@ -83,6 +83,7 @@ Simpan config network
 uci commit network
 ```
 Saya anggap firewall sudah disetting, lan-br/eth0 sebagai LAN. WAN A, WAN B, WAN C sebagai WAN.
+
 **REBOOT OPENWRT JIKA DIPERLUKAN**
 
 # Setting Mwan3
@@ -219,6 +220,7 @@ uci commit mwan3
 ```
 Silahkan Ganti `list track_ip` menggunakan gateway modem masing-masing masing.
 Jangan Lupa enable mwan3 saat startup.
+
 **REBOOT OPENWRT JIKA DIPERLUKAN**
 
 # Install V2rayA diOpenWRT
