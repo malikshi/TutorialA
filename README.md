@@ -1,10 +1,36 @@
 # TutorialA
 V2rayA Tutorial untuk VVIP IPTUNNELS
 
+**Table of Contents**
+
+- [TutorialA](#tutoriala)
+- [Beli VVIP IPTUNNELS](#beli-vvip-iptunnels)
+- [Features](#features)
+- [Setting Network](#setting-network)
+- [Setting Mwan3](#setting-mwan3)
+- [Install V2rayA diOpenWRT](#install-v2raya-diopenwrt)
+- [Setting V2rayA](#setting-v2raya)
+  - [Main Setting](#main-setting)
+  - [DNS](#dns)
+  - [OutBound](#outbound)
+    - [Memilih Proxy Outbound](#memilih-proxy-outbound)
+  - [RoutingA](#routinga)
+
+# Beli VVIP IPTUNNELS
+
+OpenClash Config untuk VVIP IPTUNNELS
+- [Buy VVIP IPTUNNELS](https://linktr.ee/iptunnelscom)
+- [Join Telegram](https://t.me/joinchat/RihiceTtK1QhBMm7)
+- [Requests Rules](https://github.com/malikshi/TutorialA/issues/new/choose)
+
 # Features
 
 * Support MWAN3 rekomendasi 3 modem(2 modem inject + 1 modem reguler untuk game).
 * Pisah Traffic TCP & UDP via MWAN3 & RoutingA V2rayA
+* Pisah traffik umum, sosmed, streaming, gaming.
+* Adblock, Privacy rules & P0rn.
+* Support Gaming filtering port.
+* Support Direct/Bypass traffik.
 
 # Setting Network
 
@@ -201,5 +227,60 @@ uci commit v2raya
 ```
 Silahkan akses WEBUI V2rayA melalui IPOpenWRT:2017 contoh http://192.168.1.1:2017
 
-## Setting V2rayA
+# Setting V2rayA
 Setelah akses webui nanti akan diminta membuat akun admin, silahkan isikan username dan password sesuai keinginan.
+
+## Main Setting
+
+Perhatian Gambar, dan mohon untuk Sesuaikan.
+<img src="https://raw.githubusercontent.com/malikshi/TutorialA/main/assets/Setting.jpg" border="0">
+
+
+## DNS
+
+Untuk DNS kita akan memilih DNS query dari google atau cloudflare. Silahkan ke menu `prevent DNS Spoofing` dan `klik Configure` kemudian isikan dns sebagai berikut:
+<img src="https://raw.githubusercontent.com/malikshi/TutorialA/main/assets/DNS.jpg" border="0">
+- Domain Query Servers
+```conf
+8.8.8.8 ->proxy
+8.8.4.4 ->direct
+```
+- External Domain Query Servers
+```conf
+https://1.1.1.1:443/dns-query->proxy
+https://1.0.0.1:443/dns-query->proxy
+1.1.1.1->direct
+1.0.0.1->direct
+```
+Jika server/proxy support IPv6, anda bisa ganti main setting `Special Mode` dengan `FakeDNS`.
+
+## OutBound
+
+Outbound ini kita akan membuat proxy-groups dan memilih proxy untuk setiap group yang telah dibuat. Disini default terdapat proxy-group: `proxy`, dan kita perlu menambahkan proxy-groups Streaming, Sosmed, dan Gaming.
+Silahkan klik `Add an outbound` dan beri nama tiap outbound sebagai berikut:
+- Streaming
+- Sosmed
+- Gaming
+
+
+Perhatikan Gambar
+<img src="https://raw.githubusercontent.com/malikshi/TutorialA/main/assets/Outbound.jpg" border="0">
+
+### Memilih Proxy Outbound
+
+Cara memilih proxy seperti vmess, vless, trojan, trojan-go, shadowsocks akan digunakan oleh outbound proxy-groups yang telah dibuat.
+- Klik `PROXY` kemudian Pilih akun server yang akan digunakan oleh Outbound `proxy` dengan cara klik `Select` pada server.
+- Klik `PROXY` kemudian arahkan dan klik ke outbound `Streaming`, pilih server dengan cara klik `Select` pada server.
+- Klik `PROXY` kemudian arahkan dan klik ke outbound `Sosmed`, pilih server dengan cara klik `Select` pada server.
+- Klik `PROXY` kemudian arahkan dan klik ke outbound `Gaming`, pilih server dengan cara klik `Select` pada server.
+
+Pemilihan Server bisa lebih dari 1, saran tiap `Outbound` terdapat 2 server yang terpilih. Khusus untuk Outbound `Gaming` saya rekomendasikan memilih 2 server region indo, jika tidak yah gunakan 1 proxy itu sangat saya rekomendasikan.
+
+## RoutingA
+
+RoutingA memudahkan users untuk membuat rule untuk setiap traffic akan melalui proxy-groups `Outbound` yang mana saja.
+
+- Silahkan Copy RoutingA yang telah kami sediakan di [RoutingA](https://raw.githubusercontent.com/malikshi/TutorialA/main/routingA.conf)
+- Pastekan pada menu `Setting > RoutingA > Configure`
+
+Kelebihan RoutingA yang kami Sediakan yakni, semua traffic UDP akan melalui WAN/modem reguler jadi ping saat bermain game dan videocall serta voice chat akan berjalan dengan sangat bagus.
